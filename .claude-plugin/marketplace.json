@@ -1,0 +1,11 @@
+{
+  "name": "compact-output-marketplace",
+  "owner": { "name": "compact-output contributors" },
+  "plugins": [
+    {
+      "name": "compact-output",
+      "source": "./",
+      "description": "Compacts Bash tool output to save context tokens, keeping errors visible and exit codes intact."
+    }
+  ]
+}
