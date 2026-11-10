@@ -54,8 +54,8 @@ Local checkout: `/plugin marketplace add /path/to/compact-output`. Requires `pyt
 
 ## What is never wrapped
 
-Commands where a pipe would change behavior: shell-state changes (`cd`, `export`, `source`/`.`, `nvm`, `conda`,
-`eval`, `alias`, `pushd`, function definitions, …), terminal/interactive or streaming commands (`ssh`, `sudo`,
+Commands where a pipe would change behavior: shell-state changes (`cd`, `export`, `nvm`, `conda`, `alias`,
+shell builtins that load a script into the current shell, `pushd`, function definitions, …), terminal/interactive or streaming commands (`ssh`, `sudo`,
 `vim`, `less`, `top`, `watch`, `tail -f`, `docker run -it`, `npm run dev`, `docker logs -f`, logins, bare REPLs,
 trailing `&`), and anything the Bash tool runs with `run_in_background`.
 

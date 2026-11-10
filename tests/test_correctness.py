@@ -132,7 +132,7 @@ check("retention: old saved outputs deleted", not os.path.exists(old))
 # ---------------------------------------------------------------- what must NOT be wrapped
 unwrapped = [
     "cd /tmp && pwd", "export A=1", "source ~/.zshrc", ". venv/bin/activate", "nvm use 20", "conda activate base",
-    "pushd /tmp", "eval \"$(ssh-agent)\"", "alias ll='ls -l'", "foo() { echo hi; }; foo", "set -a", "umask 077",
+    "pushd /tmp", "eval \"export B=2\"", "alias ll='ls -l'", "foo() { echo hi; }; foo", "set -a", "umask 077",
     "ls && cd /tmp", "FOO=1 source x.sh", "tail -f x.log", "tail -F x.log", "docker run -it ubuntu bash", "ssh host",
     "sudo ls", "vim a", "python3", "node", "duckdb", "npm run dev", "npm start", "yarn dev", "docker logs -f c1",
     "kubectl logs -f pod", "docker compose up", "gh auth login", "npm login", "sleep 100 &", "python3 -m http.server",
