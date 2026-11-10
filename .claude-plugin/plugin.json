@@ -3,5 +3,18 @@
   "version": "0.2.0",
   "description": "Cuts the token cost of Bash tool output: strips ANSI/progress noise, dedupes repeats, truncates huge output while keeping error lines, and saves the full text to a file. Exit codes preserved.",
   "license": "MIT",
-  "keywords": ["tokens", "context", "bash", "hooks", "output"]
+  "keywords": [
+    "tokens",
+    "context",
+    "bash",
+    "hooks",
+    "output"
+  ],
+  "author": {
+    "name": "pdrojack",
+    "url": "https://github.com/PDROJACK"
+  },
+  "icon": "./.claude-plugin/icon.png",
+  "homepage": "https://github.com/PDROJACK/compact-output",
+  "repository": "https://github.com/PDROJACK/compact-output"
 }

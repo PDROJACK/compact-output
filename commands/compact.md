@@ -1,6 +1,6 @@
 ---
 description: Control compact-output (status | on | off | stats | purge | config | dry-run on|off; add --project for this project only)
-allowed-tools: Bash(python3:*)
+allowed-tools: Bash(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/compactctl.py":*)
 argument-hint: "[status|on|off|stats|purge|config|dry-run on|off] [--project]"
 ---
 
