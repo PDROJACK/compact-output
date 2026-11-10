@@ -1,6 +1,6 @@
 {
   "name": "compact-output-marketplace",
-  "owner": { "name": "compact-output contributors" },
+  "owner": { "name": "pdrojack" },
   "plugins": [
     {
       "name": "compact-output",
