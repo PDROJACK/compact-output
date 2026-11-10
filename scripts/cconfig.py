@@ -30,14 +30,9 @@ DEFAULTS = {
     "dry_run": False,            # log what would be rewritten, rewrite nothing
 }
 
-ENV_MAP = {
-    "COMPACT_MAX_LINES": ("max_lines", int),
-    "COMPACT_KEEP_MAX": ("keep_max", int),
-    "COMPACT_RETENTION_DAYS": ("retention_days", int),
-    "COMPACT_REDACT": ("redact", lambda v: v.lower() in ("1", "true", "yes", "on")),
-    "COMPACT_DRY_RUN": ("dry_run", lambda v: v.lower() in ("1", "true", "yes", "on")),
-    "COMPACT_FLAG_RULES": ("flag_rules", lambda v: v.lower() in ("1", "true", "yes", "on")),
-}
+def _truthy(v):
+    return v.lower() in ("1", "true", "yes", "on")
+
 
 HOME_CLAUDE = os.path.join(os.path.expanduser("~"), ".claude")
 
@@ -75,10 +70,19 @@ def load(cwd=None):
     proj = _walk_up(start, "compact-output.json")
     if proj and os.path.dirname(os.path.dirname(proj)) != os.path.dirname(HOME_CLAUDE):
         cfg.update({k: v for k, v in _read(proj).items() if k in DEFAULTS})
-    for env, (key, conv) in ENV_MAP.items():
-        if os.environ.get(env):
+    # Literal variable names only (no names built at run time); each value is converted defensively.
+    e = os.environ
+    for key, raw, conv in (
+        ("max_lines", e.get("COMPACT_MAX_LINES"), int),
+        ("keep_max", e.get("COMPACT_KEEP_MAX"), int),
+        ("retention_days", e.get("COMPACT_RETENTION_DAYS"), int),
+        ("redact", e.get("COMPACT_REDACT"), _truthy),
+        ("dry_run", e.get("COMPACT_DRY_RUN"), _truthy),
+        ("flag_rules", e.get("COMPACT_FLAG_RULES"), _truthy),
+    ):
+        if raw:
             try:
-                cfg[key] = conv(os.environ[env])
+                cfg[key] = conv(raw)
             except Exception:
                 pass
     return cfg
